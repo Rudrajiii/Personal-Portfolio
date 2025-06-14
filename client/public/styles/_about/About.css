@@ -1,0 +1,206 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+.about-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+  overflow: hidden;
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.grid-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.grid-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(ellipse 80% 200% at center top, rgba(230, 126, 34, 0.2) 0%, rgba(230, 126, 34, 0.12) 30%, rgba(230, 126, 34, 0.06) 50%, transparent 80%);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.grid-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+  background-position: 0 0, 0 0;
+  -webkit-mask: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.1) 70%, transparent 100%);
+  mask: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.1) 70%, transparent 100%);
+}
+
+.js30-banner {
+  display: flex;
+  margin-bottom: 60px;
+  background: transparent;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  min-height: 300px;
+}
+
+.js30-logo {
+  width: 300px;
+  height: auto;
+  margin-right: 30px;
+}
+
+.js30-logo img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  transition: transform 0.3s ease;
+}
+
+.about-container {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  flex-direction: column;
+}
+.about-container .about-all {
+  width: 100%;
+  font-family: "Poppins", sans-serif;
+  color: #f0f0f0;
+}
+.about-container .about-all p {
+  text-align: justify;
+}
+
+.js30-text {
+  font-family: "Poppins", sans-serif;
+}
+
+.js30-label {
+  color: #f0f0f0;
+  font-size: 16px;
+  margin-bottom: 10px;
+}
+
+.js30-title {
+  font-size: 36px;
+  color: #ffffff;
+  margin: 0;
+}
+
+.about-content {
+  position: relative;
+  max-width: 1000px;
+  width: 100%;
+}
+
+.about-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.about-header h1 {
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  background: linear-gradient(135deg, #ffffff 0%, #e0e0e0 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: rgba(230, 126, 34, 0.8);
+  margin: 0;
+}
+
+.about-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.about-section {
+  background: rgba(30, 30, 30, 0.7);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-radius: 12px;
+  padding: 40px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+.about-section h2 {
+  color: #e67e22;
+  font-size: 1.8rem;
+  margin: 0 0 25px 0;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.about-section h2::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  height: 2px;
+  width: 60px;
+  background-color: #e67e22;
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+  .about-page {
+    padding: 60px 15px;
+  }
+  .about-header h1 {
+    font-size: 2.5rem;
+  }
+  .about-section {
+    padding: 30px;
+  }
+  .bio-content {
+    flex-direction: column;
+    text-align: center;
+  }
+  .bio-content .about-section h2::after {
+    left: 50%;
+    transform: translateX(-50%);
+  }
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+  .js30-banner {
+    flex-direction: column;
+    text-align: center;
+  }
+  .js30-logo {
+    margin-right: 0;
+    margin-bottom: 20px;
+  }
+}
+@media (max-width: 480px) {
+  .about-header h1 {
+    font-size: 2rem;
+  }
+  .subtitle {
+    font-size: 0.9rem;
+  }
+  .about-section {
+    padding: 20px;
+  }
+}

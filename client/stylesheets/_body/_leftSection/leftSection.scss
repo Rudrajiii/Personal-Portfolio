@@ -1,0 +1,522 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+$left-bg-color: #282828;
+$left-text-color: #B3B5B9;
+$left-accent-color: #8bc34a;
+$left-border-color: #333333;
+$left-padding: 20px;
+$left-section-font-family: 'Poppins', sans-serif;
+$left-section-font-weight: 500;
+$name-color: whitesmoke;
+$small-icon-font-size : 20px;
+
+
+$left-side-font-family: 'Poppins', sans-serif;
+$left-side-font-weight: 500;
+$left-side-font-size: 0.95rem;
+
+$left-resume-btn-bg: #283A2E;
+$left-resume-btn-color: #2CBB5D;
+// $left-hire-me-btn-bg: #8bc34a;
+
+@mixin font-family($font-family: $left-side-font-family, $font-weight: $left-side-font-weight, $font-size: $left-side-font-size) {
+  font-family: $font-family;
+  font-weight: $font-weight;
+  font-size: $font-size;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+// Add to your leftSection.scss file
+
+.spotify-div {
+  margin: 15px 0;
+  // padding: 0 5px;
+  max-width: 420px;
+  min-height: 95.6px;
+  cursor: pointer;
+}
+
+.spotify-card {
+  background-color: rgba(40, 40, 40, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  position: relative;
+  
+  &:hover {
+    background-color: rgba(50, 50, 50, 0.6);
+  }
+}
+
+.spotify-album-art {
+  flex-shrink: 0;
+  width: 65px;
+  height: 65px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-right: 15px;
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+  
+  .spotify-placeholder-image {
+    width: 100%;
+    height: 100%;
+    background-color: #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+.spotify-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.spotify-track-details {
+  margin-bottom: 5px;
+}
+
+.spotify-track-name {
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #f0f0f0;
+}
+
+.spotify-artist-name {
+  font-size: 12px;
+  margin: 4px 0 0;
+  color: #B3B5B9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spotify-currently-playing {
+  width: 90px;
+  background-color: #1DB954;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  border-radius: 12px;
+  font-size: 9px;
+  color: #000;
+  font-weight: 600;
+}
+
+.spotify-logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(30, 30, 30, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  color: #1DB954;
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+// Media queries for responsiveness
+@media (max-width: 768px) {
+  .spotify-card {
+    padding: 10px;
+  }
+  
+  .spotify-album-art {
+    width: 50px;
+    height: 50px;
+  }
+}
+
+@media (max-width: 394px) {
+  .spotify-track-name,
+  .spotify-artist-name {
+    max-width: 120px;
+  }
+}
+.life-update{
+  background-color: $left-bg-color;
+  border-radius: 15px;
+  display:flex;
+  padding: $left-padding;
+  flex-direction: column;
+  font-family: $left-section-font-family;
+  margin-top: 15px;
+  color: $left-text-color;
+  .life-update-list{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
+    color: $name-color;
+    // padding: 0 $left-padding;
+    margin-top: 10px;
+    li{
+      list-style-type: none;
+    }
+  }
+}
+
+.left-section {
+  background-color: $left-bg-color;
+  // border: 2px solid $left-border-color;
+  border-radius: 15px;
+  padding: $left-padding;
+  // height: 100%;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-family: $left-section-font-family;
+
+  .profile-header {
+    display: flex;
+    gap: 15px;
+    align-items: flex-start;
+    // margin-bottom: 20px;
+
+    .profile-image {
+      width: 155px;
+      height: 203px;
+      border-radius: 8px;
+      @include flex-center;
+      flex-shrink: 0;
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            display: block;
+            border-radius: 8px;
+        }
+    }
+
+    .personal-info {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+
+      .name {
+        font-size: 24px;
+        color: $name-color;
+        margin: 0 0 5px 0;
+        font-family: $left-section-font-family;
+      }
+
+      .nickname {
+        font-size: 16px;
+        color: $left-text-color;
+        // margin: 0 0 13px 0;
+        font-weight: normal;
+      }
+
+      .time-location {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+        font-size: 14px;
+        color: $left-text-color;
+
+        .time {
+          color: $name-color;
+          font-weight: bold;
+        }
+
+        .time-value {
+          font-size: 16px;
+          font-weight: bold;
+          margin-bottom: 3px;
+        }
+
+        .location {
+          display: flex;
+          align-items: center;
+          gap: 5px;
+
+          .location-icon {
+            font-size: 14px;
+          }
+        }
+      }
+    }
+  }
+
+  .bio {
+    p {
+      font-size: 14px;
+      line-height: 1.4;
+      color: $left-text-color;
+      margin: 0;
+
+      strong {
+        font-weight: bold;
+        color: $left-text-color;
+      }
+    }
+  }
+
+  .tech-stack {
+    // margin-top: auto;
+
+    .tech-icons {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 10px;
+      flex-wrap: wrap;
+      .tech-icon {
+        @include flex-center;
+        border: none;
+        cursor:pointer;
+        border-radius: 8px;
+        background-color: $left-resume-btn-bg;
+        color: $left-resume-btn-color;
+        @include font-family;
+        
+        &:nth-child(1) {
+          padding: .6rem 1.1rem;
+          width: 85px;
+          height: 35px;
+        }
+        &:nth-child(2){
+          padding: .6rem 1.1rem;
+          width: 100px;
+          height: 35px;
+        }
+
+
+        &--small {
+          font-size: $small-icon-font-size;
+          background: #3E3E3E;
+          color:#C3C5C8;
+          width: 35px;
+          height: 35px;
+        }
+        &:hover {
+          background-color: lighten($left-resume-btn-bg, 10%);
+        }
+      }
+    }
+
+    .tech-title {
+      display: flex;
+      align-items: center;
+      font-size: 16px;
+      color: $left-text-color;
+      margin: 0;
+      font-weight: bold;
+      font-family: $left-section-font-family;
+      
+      .tag-icon {
+        display: inline-flex;
+        align-items: center;
+        margin-right: 8px;
+        
+        img {
+          width: 16px;
+          height: 16px;
+          filter: brightness(0) saturate(100%) invert(76%) sepia(5%) saturate(192%) hue-rotate(182deg) brightness(92%) contrast(87%);
+        }
+      }
+    }
+  }
+
+  
+
+  .skills {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+    
+    .skill-tag {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      background-color: #3E3E3E;
+      padding: 5px 10px;
+      border-radius: 4px;
+      font-size: 12px;
+      font-weight: 600;
+      color: #C3C5C8;
+      
+      svg {
+        font-size: 15px;
+      }
+      cursor:pointer;
+      &:hover {
+        background-color: lighten($left-resume-btn-bg, 10%);
+      }
+    }
+  }
+
+  .status-indicator {
+    margin: 8px 0 12px;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    
+    .status-header {
+      display: flex;
+      align-items: center;
+      font-weight: 600;
+      color: #f5f5f5;
+      margin-bottom: 4px;
+      
+      svg {
+        color: #f5f5f5;
+      }
+    }
+    
+    .status-details {
+      display: flex;
+      align-items: center;
+      color: $left-text-color;
+      .status-badge {
+        display: flex;
+        align-items: center;
+        margin-right: 8px;
+        
+        .status-dot {
+          width: 9px;
+          height: 9px;
+          border-radius: 50%;
+          margin-right: 5px;
+          
+          &.online {
+            background-color: #4CAF50;
+            box-shadow: 0 0 5px #4CAF50;
+          }
+          
+          &.offline {
+            background-color: #f44336;
+            box-shadow: 0 0 5px #f44336;
+          }
+          
+          &--blinking {
+            animation: blink 1.5s ease-in-out infinite;
+          }
+        }
+      }
+      
+      .last-online {
+        color: #999999;
+        font-size: 13px;
+      }
+    }
+  }
+
+  // Responsive Design
+  @media (max-width: 1349px){
+    .profile-header{
+      align-items: center;
+    }
+    .status-indicator{
+      margin:5px 0 5px;
+    .status-details{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 5px;
+
+      .status-badge {
+        margin-right: 0;
+      }
+    }
+  }
+  }
+
+
+  @media (max-width:425px){
+    .tech-stack{
+      .tech-icons{
+        gap:5px;
+        
+        .tech-icon{
+          font-size:0.85rem;
+        }
+      }
+    }
+    .profile-header{
+      .profile-image{
+        img{
+          width:100%;
+          height: 93%;
+        }
+      }
+      .personal-info{
+        .name{
+          font-size: 19px;
+        }
+        .nickname{
+          font-size: 14px;
+        }
+        .time-location{
+          font-size: 12px;
+          .time-value{
+            font-size: 12px;
+          }
+        }
+      }
+    }
+    .status-indicator{
+      font-size:12px;
+      .status-details{
+        .last-online{
+          font-size: 11px;
+        }
+      }
+    }
+  }
+  @media (max-width:410px){
+    .tech-stack{
+      .tech-icons{
+        .tech-icon{
+          width: 30px;
+          height: 30px;
+          font-size:0.85rem
+        }
+        .tech-icon:nth-child(1){
+          width: 70px;
+          height: 30px;
+          font-size: 0.80rem;
+          padding: .7rem 1.1rem;
+        }
+        .tech-icon:nth-child(2){
+          width: 85px;
+          height: 30px;
+          font-size:0.80rem;
+          padding: .8rem 1.1rem;
+        }
+      }
+    }
+  }
+  
+}
+
+@keyframes blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.4; }
+  100% { opacity: 1; }
+}

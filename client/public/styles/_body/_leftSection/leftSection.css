@@ -1,0 +1,428 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+.spotify-div {
+  margin: 15px 0;
+  max-width: 420px;
+  min-height: 95.6px;
+  cursor: pointer;
+}
+
+.spotify-card {
+  background-color: rgba(40, 40, 40, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 15px;
+  padding: 12px 15px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.spotify-card:hover {
+  background-color: rgba(50, 50, 50, 0.6);
+}
+
+.spotify-album-art {
+  flex-shrink: 0;
+  width: 65px;
+  height: 65px;
+  border-radius: 8px;
+  overflow: hidden;
+  margin-right: 15px;
+}
+.spotify-album-art img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.spotify-album-art .spotify-placeholder-image {
+  width: 100%;
+  height: 100%;
+  background-color: #333;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.spotify-info {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.spotify-track-details {
+  margin-bottom: 5px;
+}
+
+.spotify-track-name {
+  font-weight: 600;
+  font-size: 14px;
+  margin: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #f0f0f0;
+}
+
+.spotify-artist-name {
+  font-size: 12px;
+  margin: 4px 0 0;
+  color: #B3B5B9;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.spotify-currently-playing {
+  width: 90px;
+  background-color: #1DB954;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px;
+  border-radius: 12px;
+  font-size: 9px;
+  color: #000;
+  font-weight: 600;
+}
+
+.spotify-logo {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background-color: rgba(30, 30, 30, 0.8);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: auto;
+  color: #1DB954;
+  font-size: 18px;
+  margin-bottom: 40px;
+}
+
+@media (max-width: 768px) {
+  .spotify-card {
+    padding: 10px;
+  }
+  .spotify-album-art {
+    width: 50px;
+    height: 50px;
+  }
+}
+@media (max-width: 394px) {
+  .spotify-track-name,
+  .spotify-artist-name {
+    max-width: 120px;
+  }
+}
+.life-update {
+  background-color: #282828;
+  border-radius: 15px;
+  display: flex;
+  padding: 20px;
+  flex-direction: column;
+  font-family: "Poppins", sans-serif;
+  margin-top: 15px;
+  color: #B3B5B9;
+}
+.life-update .life-update-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  font-size: 14px;
+  color: whitesmoke;
+  margin-top: 10px;
+}
+.life-update .life-update-list li {
+  list-style-type: none;
+}
+
+.left-section {
+  background-color: #282828;
+  border-radius: 15px;
+  padding: 20px;
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  font-family: "Poppins", sans-serif;
+}
+.left-section .profile-header {
+  display: flex;
+  gap: 15px;
+  align-items: flex-start;
+}
+.left-section .profile-header .profile-image {
+  width: 155px;
+  height: 203px;
+  border-radius: 8px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+}
+.left-section .profile-header .profile-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  display: block;
+  border-radius: 8px;
+}
+.left-section .profile-header .personal-info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+.left-section .profile-header .personal-info .name {
+  font-size: 24px;
+  color: whitesmoke;
+  margin: 0 0 5px 0;
+  font-family: "Poppins", sans-serif;
+}
+.left-section .profile-header .personal-info .nickname {
+  font-size: 16px;
+  color: #B3B5B9;
+  font-weight: normal;
+}
+.left-section .profile-header .personal-info .time-location {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font-size: 14px;
+  color: #B3B5B9;
+}
+.left-section .profile-header .personal-info .time-location .time {
+  color: whitesmoke;
+  font-weight: bold;
+}
+.left-section .profile-header .personal-info .time-location .time-value {
+  font-size: 16px;
+  font-weight: bold;
+  margin-bottom: 3px;
+}
+.left-section .profile-header .personal-info .time-location .location {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.left-section .profile-header .personal-info .time-location .location .location-icon {
+  font-size: 14px;
+}
+.left-section .bio p {
+  font-size: 14px;
+  line-height: 1.4;
+  color: #B3B5B9;
+  margin: 0;
+}
+.left-section .bio p strong {
+  font-weight: bold;
+  color: #B3B5B9;
+}
+.left-section .tech-stack .tech-icons {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+.left-section .tech-stack .tech-icons .tech-icon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: none;
+  cursor: pointer;
+  border-radius: 8px;
+  background-color: #283A2E;
+  color: #2CBB5D;
+  font-family: "Poppins", sans-serif;
+  font-weight: 500;
+  font-size: 0.95rem;
+}
+.left-section .tech-stack .tech-icons .tech-icon:nth-child(1) {
+  padding: 0.6rem 1.1rem;
+  width: 85px;
+  height: 35px;
+}
+.left-section .tech-stack .tech-icons .tech-icon:nth-child(2) {
+  padding: 0.6rem 1.1rem;
+  width: 100px;
+  height: 35px;
+}
+.left-section .tech-stack .tech-icons .tech-icon--small {
+  font-size: 20px;
+  background: #3E3E3E;
+  color: #C3C5C8;
+  width: 35px;
+  height: 35px;
+}
+.left-section .tech-stack .tech-icons .tech-icon:hover {
+  background-color: rgb(60.8163265306, 88.1836734694, 69.9387755102);
+}
+.left-section .tech-stack .tech-title {
+  display: flex;
+  align-items: center;
+  font-size: 16px;
+  color: #B3B5B9;
+  margin: 0;
+  font-weight: bold;
+  font-family: "Poppins", sans-serif;
+}
+.left-section .tech-stack .tech-title .tag-icon {
+  display: inline-flex;
+  align-items: center;
+  margin-right: 8px;
+}
+.left-section .tech-stack .tech-title .tag-icon img {
+  width: 16px;
+  height: 16px;
+  filter: brightness(0) saturate(100%) invert(76%) sepia(5%) saturate(192%) hue-rotate(182deg) brightness(92%) contrast(87%);
+}
+.left-section .skills {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+.left-section .skills .skill-tag {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background-color: #3E3E3E;
+  padding: 5px 10px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #C3C5C8;
+  cursor: pointer;
+}
+.left-section .skills .skill-tag svg {
+  font-size: 15px;
+}
+.left-section .skills .skill-tag:hover {
+  background-color: rgb(60.8163265306, 88.1836734694, 69.9387755102);
+}
+.left-section .status-indicator {
+  margin: 8px 0 12px;
+  display: flex;
+  flex-direction: column;
+  font-size: 14px;
+}
+.left-section .status-indicator .status-header {
+  display: flex;
+  align-items: center;
+  font-weight: 600;
+  color: #f5f5f5;
+  margin-bottom: 4px;
+}
+.left-section .status-indicator .status-header svg {
+  color: #f5f5f5;
+}
+.left-section .status-indicator .status-details {
+  display: flex;
+  align-items: center;
+  color: #B3B5B9;
+}
+.left-section .status-indicator .status-details .status-badge {
+  display: flex;
+  align-items: center;
+  margin-right: 8px;
+}
+.left-section .status-indicator .status-details .status-badge .status-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.left-section .status-indicator .status-details .status-badge .status-dot.online {
+  background-color: #4CAF50;
+  box-shadow: 0 0 5px #4CAF50;
+}
+.left-section .status-indicator .status-details .status-badge .status-dot.offline {
+  background-color: #f44336;
+  box-shadow: 0 0 5px #f44336;
+}
+.left-section .status-indicator .status-details .status-badge .status-dot--blinking {
+  animation: blink 1.5s ease-in-out infinite;
+}
+.left-section .status-indicator .status-details .last-online {
+  color: #999999;
+  font-size: 13px;
+}
+@media (max-width: 1349px) {
+  .left-section .profile-header {
+    align-items: center;
+  }
+  .left-section .status-indicator {
+    margin: 5px 0 5px;
+  }
+  .left-section .status-indicator .status-details {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+  .left-section .status-indicator .status-details .status-badge {
+    margin-right: 0;
+  }
+}
+@media (max-width: 425px) {
+  .left-section .tech-stack .tech-icons {
+    gap: 5px;
+  }
+  .left-section .tech-stack .tech-icons .tech-icon {
+    font-size: 0.85rem;
+  }
+  .left-section .profile-header .profile-image img {
+    width: 100%;
+    height: 93%;
+  }
+  .left-section .profile-header .personal-info .name {
+    font-size: 19px;
+  }
+  .left-section .profile-header .personal-info .nickname {
+    font-size: 14px;
+  }
+  .left-section .profile-header .personal-info .time-location {
+    font-size: 12px;
+  }
+  .left-section .profile-header .personal-info .time-location .time-value {
+    font-size: 12px;
+  }
+  .left-section .status-indicator {
+    font-size: 12px;
+  }
+  .left-section .status-indicator .status-details .last-online {
+    font-size: 11px;
+  }
+}
+@media (max-width: 410px) {
+  .left-section .tech-stack .tech-icons .tech-icon {
+    width: 30px;
+    height: 30px;
+    font-size: 0.85rem;
+  }
+  .left-section .tech-stack .tech-icons .tech-icon:nth-child(1) {
+    width: 70px;
+    height: 30px;
+    font-size: 0.8rem;
+    padding: 0.7rem 1.1rem;
+  }
+  .left-section .tech-stack .tech-icons .tech-icon:nth-child(2) {
+    width: 85px;
+    height: 30px;
+    font-size: 0.8rem;
+    padding: 0.8rem 1.1rem;
+  }
+}
+
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}

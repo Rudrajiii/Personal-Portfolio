@@ -1,0 +1,51 @@
+// Body Style Constants
+$body-bg-color: #1A1A1A;
+$body-padding: 20px;
+$section-gap: 20px;
+
+.body-container {
+  background-color: $body-bg-color;
+  min-height: calc(100vh - 60px); // Subtract navbar height
+  padding: $body-padding;
+
+  .body-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: $section-gap;
+    height: 100%;
+
+    .body-left {
+      grid-column: 1;
+    }
+
+    .body-right {
+      grid-column: 2;
+    }
+  }
+  @media (max-width:1275px){
+    padding:15px;
+    .body-content {
+      grid-template-columns: 1fr;
+      gap: 15px;
+
+      .body-left {
+        grid-column: 1;
+      }
+
+      .body-right {
+        grid-column: 1;
+      }
+    }
+  }
+  
+
+  @media (max-width: 480px) {
+    padding: 10px;
+
+    .body-content {
+      gap: 10px;
+    }
+  }
+}
