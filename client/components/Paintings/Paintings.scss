@@ -1,0 +1,285 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+
+$paintings-font-family: 'Poppins', sans-serif;
+$accent-color: #FBE9D9; // Green color from your design
+$background-color: #1a1a1a;
+$text-color: #f0f0f0;
+$border-radius: 12px;
+
+.paintings-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+  overflow: hidden;
+  padding: 40px 20px;
+  display: flex;
+  justify-content: center;
+  font-family: $paintings-font-family;
+}
+
+.grid-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.grid-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  min-height: 100%;
+  background: radial-gradient(
+    ellipse 80% 200% at center top,
+    rgba(230, 126, 34, 0.2) 0%,
+    rgba(230, 126, 34, 0.12) 30%,
+    rgba(230, 126, 34, 0.06) 50%,
+    transparent 80%
+  );
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.grid-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(
+      rgba(255, 255, 255, 0.05) 1px,
+      transparent 1px
+    ),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+  background-position: 0 0, 0 0;
+  -webkit-mask: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.5) 40%,
+    rgba(255, 255, 255, 0.1) 70%,
+    transparent 100%
+  );
+  mask: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.8) 0%,
+    rgba(255, 255, 255, 0.5) 40%,
+    rgba(255, 255, 255, 0.1) 70%,
+    transparent 100%
+  );
+}
+
+.paintings-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1400px;
+  width: 100%;
+  display: flex;
+  gap: 30px;
+  height: calc(100vh - 80px);
+}
+
+/* Left Section - 30% width, fixed content */
+.left-section-of-paintings {
+  flex: 0 0 30%;
+  display: flex;
+  flex-direction: column;
+//   background-color: transparent;
+  gap: 20px;
+  overflow: hidden;
+//   padding-right: 20px;
+}
+
+.painting-image-container {
+  flex: 0 0 auto;
+  height: 45%;
+  border-radius: $border-radius;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: $border-radius;
+    object-position: top;
+  }
+}
+
+.image-placeholder {
+  color: $accent-color;
+  font-size: 1.2rem;
+  text-align: center;
+  font-style: italic;
+}
+
+.painting-text {
+  color: $accent-color;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.painting-paragraph {
+  margin-bottom: 20px;
+}
+
+/* Right Section - 70% width, scrollable grid with two columns */
+.right-section {
+  flex: 0 0 70%;
+  display: flex;
+  flex-direction: column;
+  background: transparent;
+  overflow: hidden;
+}
+
+.paintings-heading {
+  color: $accent-color;
+  font-size: 2rem;
+  margin-bottom: 20px;
+  text-align: start;
+  font-weight: 500;
+}
+
+.paintings-grid {
+  display: flex;
+  gap: 20px;
+  height: 100%;
+  overflow-y: auto;
+  padding-right: 2px;
+  padding-bottom: 20px;
+  
+  /* Scrollbar styling */
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: rgba(230, 165, 108, 0.53);
+    border-radius: 8px;
+    
+    &:hover {
+      background: rgba(76, 175, 80, 0.7);
+    }
+  }
+}
+
+.grid-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.painting-item {
+  position: relative;
+  border-radius: $border-radius;
+  overflow: hidden;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  height: 300px;
+//   background: rebeccapurple;
+//   border: 2px solid red;
+  
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4);
+    
+    .painting-overlay {
+      opacity: 1;
+    }
+  }
+  
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* Different painting sizes */
+.painting-tall {
+  height: 500px;
+//   background: #c88989;
+}
+
+.painting-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+  padding: 15px;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  display: flex;
+  align-items: flex-end;
+  height: 50%;
+}
+
+.painting-title {
+  color: white;
+  margin: 0;
+  font-weight: 600;
+  font-size: 0.9rem;
+}
+
+/* Responsive adjustments */
+@media (max-width: 1024px) {
+  .paintings-content {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .left-section-of-paintings {
+    flex: 0 0 auto;
+    width: 100%;
+    // padding-right: 0;
+  }
+  
+  .right-section {
+    flex: 0 0 auto;
+    width: 100%;
+  }
+  
+  .paintings-grid {
+    height: 600px;
+  }
+}
+
+@media (max-width: 768px) {
+  .paintings-page {
+    padding: 20px 15px;
+  }
+  
+  .paintings-heading {
+    font-size: 1.5rem;
+  }
+  
+  .painting-image-container {
+    height: 300px;
+  }
+  
+  .painting-text {
+    font-size: 1rem;
+  }
+  
+  .paintings-grid {
+    flex-direction: column;
+  }
+  
+  .grid-column {
+    width: 100%;
+  }
+}

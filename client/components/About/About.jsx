@@ -1,6 +1,7 @@
 import React from 'react';
 import '../../public/styles/_about/About.css';
 import __ichigo__ from '../../src/assets/ichis_smily_face.png';
+
 import { RiQuillPenAiLine } from "react-icons/ri";
 
 

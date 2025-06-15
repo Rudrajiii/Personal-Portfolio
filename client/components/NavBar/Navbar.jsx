@@ -25,8 +25,10 @@ const Navbar = () => {
 
       <div className={`nav__links ${isMenuOpen ? 'nav__links--active' : ''}`}>
         <Link to="/about" className="nav__link" onClick={closeMenu}>About Me</Link>
-        <Link to="/#projects" className="nav__link" onClick={closeMenu}>Fun Projects</Link>
-        <Link to="/#paintings" className="nav__link" onClick={closeMenu}>Paintings</Link>
+        <Link to="/#fun-projects" className="nav__link" onClick={closeMenu}>Fun Projects</Link>
+        <Link to="/paintings" className="nav__link" onClick={closeMenu}>Paintings</Link>
+        <Link to="/#daily-updates" className="nav__link" onClick={closeMenu}>Daily Update</Link>
+        <Link to="/contact" className="nav__link" onClick={closeMenu}>Get in touch</Link>
       </div>
 
       <div className="nav__right">
