@@ -13,6 +13,8 @@ import '../../../public/styles/_body/_leftSection/leftSection.css';
 import {lifeUpdates , techSkills} from '../../../Data';
 
 import { io } from "socket.io-client";
+import { RoughNotation } from 'react-rough-notation';
+
 
 
 
@@ -256,11 +258,16 @@ const LeftSection = () => {
       {/* Bio/Description */}
       <div className="bio">
         <p>
-          Enjoying Coding in illusional world... 
+          Enjoying Coding in illusional world...
           love to learn and explore new things!! currently 
-          working on <strong>Leetcode Status Tracker Extension</strong> project & learning <strong>Go</strong>.
+          working on <strong>Leetcode Status Tracker Extension</strong>
+          project & learning{' '}
+          <RoughNotation type="underline" show={true} color="#34d399">
+            <span><strong>Go</strong></span>
+          </RoughNotation>.
         </p>
       </div>
+
 
       {/* Tech Stack Icons */}
       <div className="tech-stack">
