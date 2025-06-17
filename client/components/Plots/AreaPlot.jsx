@@ -7,14 +7,32 @@ const formatDate = (dateString) => {
   return date.toLocaleDateString("en-US", { month: "short", day: "numeric" });
 };
 
-function formatDecimalHours(decimal) {
-  const hours = Math.floor(decimal);
-  const minutes = Math.round((decimal % 1) * 60);
+const dailyAverage = (data) => {
+   let totalDays = data.data || [];
+   let totalTimeInDecimal = 0;
+   for(let eachDay of totalDays){
+    totalTimeInDecimal += parseFloat(eachDay.grand_total.decimal);
+   }
+   let dailyAverageCodingTime = totalTimeInDecimal / totalDays.length;
+   return formatDecimalHours(dailyAverageCodingTime); 
+}
 
-  return `${hours} ${hours === 1 ? 'hr' : 'hrs'} ${minutes} ${minutes === 1 ? 'min' : 'mins'}`;
+function formatDecimalHours(decimal) {
+  try{
+    const hours = Math.floor(decimal);
+    const minutes = Math.round((decimal % 1) * 60);
+    if (isNaN(hours) || isNaN(minutes)) {
+      return "0 hrs 0 mins";
+    }
+    return `${hours} ${hours === 1 ? 'hr' : 'hrs'} ${minutes} ${minutes === 1 ? 'min' : 'mins'}`;
+  }catch(err){
+    return "0 hrs 0 mins";
+  }
 }
 
 const AreaPlot = ({ apiData }) => {
+  let dailyAvgCodingTime = dailyAverage(apiData);
+  console.log(dailyAvgCodingTime);
   // Check if we have data and handle the new nested structure
   const hasData = apiData && (apiData.data || Array.isArray(apiData));
   
@@ -89,7 +107,7 @@ const AreaPlot = ({ apiData }) => {
             axisLine={false}
             tickLine={false}
             label={{
-              value: "Daily coding activity",
+              value: `Daily coding activity (Avg ${dailyAvgCodingTime})`,
               position: "insideBottom",
               offset: -5,
               style: { textAnchor: "middle", fill: "#B3B5B9", fontSize: "12px" },

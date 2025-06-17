@@ -1,0 +1,223 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap");
+.contact-page {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  background: linear-gradient(180deg, #1a1a1a 0%, #0d0d0d 100%);
+  overflow: hidden;
+  padding: 80px 20px;
+  display: flex;
+  justify-content: center;
+  font-family: "Poppins", sans-serif;
+}
+
+.grid-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+}
+
+.grid-background::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  height: 100vh;
+  background: radial-gradient(ellipse 80% 200% at center top, rgba(230, 126, 34, 0.2) 0%, rgba(230, 126, 34, 0.12) 30%, rgba(230, 126, 34, 0.06) 50%, transparent 80%);
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.grid-lines {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 30px 30px;
+  background-position: 0 0, 0 0;
+  -webkit-mask: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.1) 70%, transparent 100%);
+  mask: linear-gradient(180deg, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.1) 70%, transparent 100%);
+}
+
+.contact-content {
+  position: relative;
+  z-index: 2;
+  max-width: 1000px;
+  width: 100%;
+  min-height: 428px;
+}
+
+.contact-title {
+  text-align: start;
+  font-size: 1.5rem;
+  margin-bottom: 10px;
+  color: #FBE9D9;
+  font-family: "Poppins", sans-serif;
+  font-weight: 600;
+}
+
+.contact-container {
+  display: flex;
+  gap: 30px;
+  background-color: transparent;
+  border-radius: 12px;
+  padding: 0 30px;
+}
+
+.contact-image-container {
+  flex: 1;
+  max-width: 400px;
+  min-height: 400px;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-placeholder {
+  color: #FBE9D9;
+  text-align: center;
+  font-style: italic;
+  width: 100%;
+  height: 440px;
+}
+.image-placeholder img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+}
+
+.contact-form-container {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+.contact-form-container p {
+  color: #FBE9D9;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  width: 165px;
+  cursor: pointer;
+  text-align: center;
+  padding: 4px;
+  background: rgba(255, 107, 107, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.contact-form-container p .look-at-me-damnit-dot {
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  margin-right: 5px;
+}
+.contact-form-container p .look-at-me-damnit-dot.roundy {
+  background: #FBE9D9;
+}
+.contact-form-container p .look-at-me-damnit-dot--blinking {
+  animation: blink 1.5s ease-in-out infinite;
+}
+
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+input, textarea {
+  padding: 15px;
+  border-radius: 12px;
+  border: 1px solid rgba(226, 224, 223, 0.1803921569);
+  background-color: transparent;
+  color: #f0f0f0;
+  font-size: 1rem;
+  font-family: "Poppins", sans-serif;
+  transition: all 0.3s ease;
+}
+input:focus, textarea:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.3);
+}
+input::placeholder, textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+textarea {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.send-button {
+  padding: 15px;
+  border: none;
+  border-radius: 12px;
+  background-color: #FBE9D9;
+  color: #af5c29;
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: "Poppins", sans-serif;
+}
+.send-button:hover {
+  background-color: rgb(246.1428571429, 206.2857142857, 170.8571428571);
+  transform: translateY(-2px);
+}
+.send-button:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 900px) {
+  .contact-container {
+    flex-direction: column;
+    align-items: center;
+  }
+  .contact-image-container {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 20px;
+    min-height: 300px;
+  }
+  .contact-form-container {
+    width: 100%;
+  }
+}
+@media (max-width: 600px) {
+  .contact-title {
+    font-size: 2rem;
+  }
+  .contact-container {
+    padding: 0;
+  }
+  .contact-image-container {
+    min-height: 200px;
+  }
+  input, textarea, .send-button {
+    padding: 12px;
+  }
+}
+@keyframes blink {
+  0% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+  100% {
+    opacity: 1;
+  }
+}

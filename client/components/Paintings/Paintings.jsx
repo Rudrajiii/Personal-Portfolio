@@ -1,6 +1,7 @@
 import React from 'react';
-import './Paintings.scss';
-import __zhuofan__ from '../../src/assets/zhuofan.png'; // Assuming you have a zhuofan image in your assets
+import '../../public/styles/_paintings/Paintings.css';
+import __eyes__ from '../../src/assets/hidden-skill-painting/eyes.jpg'; 
+import __zhuofan__ from '../../src/assets/zhuofan.png'; 
 
 // Import your paintings or use placeholders for now
 const paintings = [
@@ -10,7 +11,6 @@ const paintings = [
   { id: 4, src: '/path/to/painting4.jpg', title: 'Forest Path', size: 'wide' },
   { id: 5, src: '/path/to/painting5.jpg', title: 'City Lights', size: 'normal' },
   { id: 6, src: '/path/to/painting6.jpg', title: 'Mountain Lake', size: 'tall' },
-  // Add more paintings as needed
 ];
 
 const Paintings = () => {
@@ -48,13 +48,13 @@ const Paintings = () => {
           <div className="paintings-grid">
             {/* Left Column */}
             <div className="grid-column">
-              <div className="painting-item">
+              <div className="painting-item first-painting">
                 <img 
-                  src="https://i.pinimg.com/736x/0b/17/68/0b17687c0df676176373bcbdcc40e3cb.jpg" 
+                  src={__eyes__} 
                   alt="Painting 1"
                 />
                 <div className="painting-overlay">
-                  <p className="painting-title">Abstract Nature</p>
+                  <p className="painting-title">Human Eye (17/06/25)</p>
                 </div>
               </div>
               

@@ -67,6 +67,7 @@ $left-resume-btn-color: #2CBB5D;
     width: 100%;
     height: 100%;
     object-fit: cover;
+    border-radius: 8px;
   }
   
   .spotify-placeholder-image {
@@ -144,8 +145,8 @@ $left-resume-btn-color: #2CBB5D;
   }
   
   .spotify-album-art {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
   }
 }
 

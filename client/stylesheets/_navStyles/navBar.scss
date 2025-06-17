@@ -6,6 +6,8 @@ $nav-bg-color: #282828;
 $nav-border-color: #464646;
 $nav-text-color: #999999;
 $nav-button-bg: #534024;
+$body-bg-color: #1A1A1A;
+
 
 // Dimensions
 $nav-height: 60px;
@@ -72,6 +74,16 @@ $transition-type: ease;
     justify-content: center;
     flex: 1;
     // margin-left: 5rem;
+  
+    .--app-root{
+      padding: 5px;
+      width: 30px;
+      background: $body-bg-color;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 8px;
+    }
 
     .nav__link {
       color: $nav-text-color;

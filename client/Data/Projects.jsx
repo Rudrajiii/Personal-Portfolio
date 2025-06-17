@@ -8,7 +8,7 @@ import __volt__ from '../src/assets/project-images/volt.png';
 export const projectsData = [
     {
       id: 1,
-      title: "Full Adder Circuit Design in Logisim-Evolution",
+      title: "Full Adder Circuit Design in Logisim",
       description: "This project showcases the design and simulation of a Full Adder, a fundamental combinational circuit in digital logic, using the Logisim-Evolution tool. The full adder takes three 1-bit binary inputs—A, B, and Cin (carry-in)—and produces two outputs: Sum and Cout (carry-out).",
       tags: ["Digital Logic", "Boolean Algebra", "Combinational Circuits", "Logisim-Evolution"],
       date: "April 2025",
@@ -30,7 +30,7 @@ export const projectsData = [
       id: 3,
       title: "Recipe Generator & Analysis App",
       description: "This is Recipe Generator app . By using this you can generate your own any favourite recipes along with the proper nutritional analysis & video tutorial of that recipe. You can translate the recipe in your own native language and share it with your friends and family.",
-      tags: ["Node.js", "Express", "EJS", "SCSS","MongoDB","Firebase","Chart.js"],
+      tags: ["Node.js", "Express", "EJS & SCSS","MongoDB","Firebase","Chart.js"],
       date: "June 2025",
       link: "#",
       image: __recipein__,
@@ -44,7 +44,7 @@ export const projectsData = [
       date: "March 2025",
       link: "#",
       image: __clipy__,
-      category: "All"
+      category: "Backend"
     },
     {
       id: 5,

@@ -110,8 +110,10 @@
 }
 .right-section .right-content .bottom-row .card-large .card-content-large .project-cards .project-grid .project-card .project-card-content .project-image-container {
   width: 300px;
-  border-radius: 8px;
   height: 160px;
+  min-width: 300px;
+  min-height: 160px;
+  border-radius: 8px;
   margin: 10px;
   background-color: rgba(40, 40, 40, 0.5);
   overflow: hidden;
@@ -149,7 +151,27 @@
   font-size: 18px;
   font-weight: 500;
   margin: 0 0 8px 0;
+  display: flex;
+  flex-direction: column-reverse;
+  gap: 3px;
   font-family: "Poppins", sans-serif;
+}
+.right-section .right-content .bottom-row .card-large .card-content-large .project-cards .project-grid .project-card .project-card-content .project-info .project-title .contain-link-date {
+  width: 100%;
+  gap: 5px;
+  display: none;
+}
+.right-section .right-content .bottom-row .card-large .card-content-large .project-cards .project-grid .project-card .project-card-content .project-info .project-title .contain-link-date .project-date-style {
+  width: 75px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #283a2e;
+  font-weight: 500;
+  color: #2cbb5d;
+  padding: 3px;
+  border-radius: 8px;
+  font-size: 11px;
 }
 .right-section .right-content .bottom-row .card-large .card-content-large .project-cards .project-grid .project-card .project-card-content .project-info .project-description {
   color: #b3b5b9;
@@ -187,9 +209,9 @@
   position: absolute;
   top: 10px;
   right: 45px;
-  background-color: #283A2E;
+  background-color: #283a2e;
   font-weight: 500;
-  color: #2CBB5D;
+  color: #2cbb5d;
   padding: 3px 8px;
   border-radius: 50px;
   font-size: 11px;
@@ -283,6 +305,30 @@
     height: 200px;
   }
 }
+@media (max-width: 910px) {
+  .right-section .right-content .project-card .project-card-content {
+    display: flex;
+    flex-direction: column;
+    padding: 0;
+    position: relative;
+    height: 100%;
+  }
+  .right-section .right-content .project-card .project-card-content .project-info {
+    padding: 10px !important;
+  }
+  .right-section .right-content .project-card .project-card-content .display-action {
+    display: none;
+  }
+  .right-section .right-content .project-card .project-card-content .project-title .contain-link-date {
+    display: flex !important;
+  }
+  .right-section .right-content .project-card .project-card-content .project-image-container {
+    width: auto !important;
+    height: auto !important;
+    min-width: 300px;
+    min-height: 160px;
+  }
+}
 @media (max-width: 768px) {
   .right-section {
     min-height: 400px;
@@ -296,7 +342,7 @@
     gap: 15px;
   }
   .right-section .right-content .top-row .card {
-    height: 120px;
+    min-height: 120px;
   }
   .right-section .right-content .middle-row {
     height: 180px;
@@ -311,6 +357,13 @@
     font-size: 13px;
   }
 }
+@media (max-width: 533px) {
+  .right-section .right-content li {
+    margin-right: 8px !important;
+    padding: 2px 7px !important;
+    font-size: 10px !important;
+  }
+}
 @media (max-width: 480px) {
   .right-section .right-content {
     gap: 12px;
@@ -319,7 +372,7 @@
     gap: 12px;
   }
   .right-section .right-content .top-row .card {
-    height: 100px;
+    min-height: 100px;
   }
   .right-section .right-content .middle-row {
     height: 150px;
@@ -336,6 +389,35 @@
   .right-section .right-content .card .github-calendar-wrapper .card-title {
     font-size: 14px;
     margin-bottom: 10px;
+  }
+}
+@media (max-width: 471px) {
+  .right-section .right-content .project-title {
+    font-size: 16px !important;
+  }
+  .right-section .right-content .project-description {
+    font-size: 13px !important;
+  }
+}
+@media (max-width: 410px) {
+  .right-section .right-content li {
+    margin-right: 3px !important;
+    padding: 2px 7px !important;
+    font-size: 10px !important;
+  }
+  .right-section .right-content .project-tags {
+    gap: 7px !important;
+  }
+  .right-section .right-content .project-tags .tag {
+    font-size: 9px !important;
+    padding: 3px 6px !important;
+  }
+}
+@media (max-width: 380px) {
+  .right-section .right-content li {
+    margin-right: 3px !important;
+    padding: 2px 7px !important;
+    font-size: 8.3px !important;
   }
 }
 

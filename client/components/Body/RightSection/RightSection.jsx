@@ -61,6 +61,7 @@ const RightSection = () => {
       const res = await fetch("https://wakatime.com/share/@Rudra_/be63e25f-927f-4586-b971-81fa9e623dfe.json");
       if (!res.ok) throw new Error('Failed to fetch data');
       const data = await res.json();
+      // console.log("Fetched coding hours data:", data.data);
       setCodingStats(data);
 
     } catch (err) {
@@ -86,6 +87,8 @@ const RightSection = () => {
     };
   }, []);
 
+
+  
 
 
   return (
@@ -131,7 +134,14 @@ const RightSection = () => {
                           <img src={project.image} alt="" />
                         </div>
                         <div className="project-info">
-                          <h3 className="project-title">{project.title}</h3>
+                          <h3 className="project-title">{project.title}
+                            <div className="contain-link-date">
+                              <p className="project-date-style">{project.date}</p>
+                              <p className="project-link-style">
+                                <TbExternalLink size={25} style={{verticalAlign:'top'}} />
+                              </p>
+                            </div>
+                          </h3>
                           <p className="project-description">
                             {project.description}
                           </p>
@@ -148,10 +158,10 @@ const RightSection = () => {
                             )}
                           </div>
                         </div>
-                        <div className="project-link">
+                        <div className="project-link  display-action">
                           <TbExternalLink size={25} />
                         </div>
-                        <div className="project-date">{project.date}</div>
+                        <div className="project-date display-action">{project.date}</div>
                       </div>
                     </div>
                   ))}

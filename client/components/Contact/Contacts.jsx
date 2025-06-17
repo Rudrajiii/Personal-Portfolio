@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-import './Contact.scss';
-import { FaEnvelope } from 'react-icons/fa';  // Import envelope icon
+import '../../public/styles/_contact/Contact.css';
 import __naruto__ from '../../src/assets/naruto.png'; // Assuming you have a luffy image in your assets
 import { RiArrowRightUpLine } from "react-icons/ri";
 

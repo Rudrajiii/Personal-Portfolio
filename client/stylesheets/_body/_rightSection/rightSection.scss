@@ -16,8 +16,8 @@ $right-section-font-weight: 500;
 $right-btn-bg-color: #3e3e3e;
 $right-section-btn-hover: #283a2e;
 
-$right-resume-tag-bg: #283A2E;
-$right-resume-tag-color: #2CBB5D;
+$right-resume-tag-bg: #283a2e;
+$right-resume-tag-color: #2cbb5d;
 
 .right-section {
   background-color: $right-bg-color;
@@ -147,8 +147,10 @@ $right-resume-tag-color: #2CBB5D;
 
                   .project-image-container {
                     width: 300px;
-                    border-radius: 8px;
                     height: 160px;
+                    min-width: 300px;
+                    min-height: 160px;
+                    border-radius: 8px;
                     margin: 10px;
                     background-color: rgba(40, 40, 40, 0.5);
                     overflow: hidden; // Add this to contain the image
@@ -161,7 +163,7 @@ $right-resume-tag-color: #2CBB5D;
                       object-fit: cover; // Keep this to maintain aspect ratio
                       object-position: center; // Center the image in the container
                       transition: all 0.3s ease; // Smoother transitions
-                      
+
                       background-position: center;
 
                       // Optional hover effect for better UX
@@ -172,7 +174,7 @@ $right-resume-tag-color: #2CBB5D;
 
                     // Add a subtle overlay to improve text contrast against varied background images
                     &::after {
-                      content: '';
+                      content: "";
                       position: absolute;
                       top: 0;
                       left: 0;
@@ -196,7 +198,27 @@ $right-resume-tag-color: #2CBB5D;
                       font-size: 18px;
                       font-weight: 500;
                       margin: 0 0 8px 0;
+                      display: flex;
+                      flex-direction: column-reverse;
+                      gap: 3px;
                       font-family: $right-section-font-family;
+                      .contain-link-date{
+                        width: 100%;
+                        gap: 5px;
+                        display: none;
+                        .project-date-style{
+                          width: 75px;
+                          display: flex;
+                          justify-content: center;
+                          align-items: center;
+                          background-color: $right-resume-tag-bg;
+                          font-weight: 500;
+                          color: $right-resume-tag-color; 
+                          padding: 3px;
+                          border-radius: 8px;
+                          font-size: 11px;
+                        }
+                      }
                     }
 
                     .project-description {
@@ -244,8 +266,7 @@ $right-resume-tag-color: #2CBB5D;
                     right: 45px;
                     background-color: $right-resume-tag-bg;
                     font-weight: 500;
-                    // border: 1px solid $right-resume-tag-color;
-                    color: $right-resume-tag-color; // Orange text
+                    color: $right-resume-tag-color; 
                     padding: 3px 8px;
                     border-radius: 50px;
                     font-size: 11px;
@@ -363,6 +384,38 @@ $right-resume-tag-color: #2CBB5D;
       }
     }
   }
+  
+  @media (max-width: 910px) {
+  .right-content {
+    .project-card {
+      .project-card-content {
+        display: flex;
+        flex-direction: column;
+        padding: 0;
+        position: relative;
+        height: 100%;
+        .project-info{
+          padding: 10px !important;
+        }
+        .display-action{
+          display: none;
+        }
+        .project-title{
+          .contain-link-date{
+              display: flex !important;
+        }
+        }
+        
+        .project-image-container {
+          width: auto !important;
+          height: auto !important;
+          min-width: 300px;
+          min-height: 160px;
+        }
+      }
+    }
+  }
+}
 
   @media (max-width: 768px) {
     // padding: 15px;
@@ -377,7 +430,7 @@ $right-resume-tag-color: #2CBB5D;
         gap: 15px;
 
         .card {
-          height: 120px;
+          min-height: 120px;
         }
       }
 
@@ -399,6 +452,16 @@ $right-resume-tag-color: #2CBB5D;
     }
   }
 
+  @media (max-width:533px){
+    .right-content{
+      li{
+        margin-right: 8px !important;
+        padding:2px 7px !important;
+        font-size: 10px !important;
+      }
+    }
+  }
+
   @media (max-width: 480px) {
     // padding: 12px;
 
@@ -409,7 +472,7 @@ $right-resume-tag-color: #2CBB5D;
         gap: 12px;
 
         .card {
-          height: 100px;
+          min-height: 100px;
         }
       }
 
@@ -434,6 +497,41 @@ $right-resume-tag-color: #2CBB5D;
             margin-bottom: 10px;
           }
         }
+      }
+    }
+  }
+  @media (max-width:471px) {
+    .right-content{
+      .project-title{
+        font-size: 16px !important;
+      }
+      .project-description{
+        font-size: 13px !important;
+      }
+    }
+  }
+  @media (max-width:410px){
+    .right-content{
+      li{
+        margin-right: 3px !important;
+        padding:2px 7px !important;
+        font-size: 10px !important;
+      }
+      .project-tags{
+        gap: 7px !important;
+        .tag{
+          font-size: 9px !important;
+          padding: 3px 6px !important;
+        }
+      }
+    }
+  }
+  @media (max-width:380px){
+    .right-content{
+      li{
+        margin-right: 3px !important;
+        padding:2px 7px !important;
+        font-size: 8.3px !important;
       }
     }
   }

@@ -7,9 +7,9 @@ const clientId = process.env.SPOTIFY_CLIENT_ID;
 const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
 const refreshToken = process.env.SPOTIFY_REFRESH_TOKEN; 
 
-console.log('Client ID:', clientId);
-console.log('Client Secret:', clientSecret);
-console.log('Refresh Token:', refreshToken);
+// console.log('Client ID:', clientId);
+// console.log('Client Secret:', clientSecret);
+// console.log('Refresh Token:', refreshToken);
 
 const basic = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
 

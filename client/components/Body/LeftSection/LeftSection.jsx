@@ -12,6 +12,9 @@ import __tag__ from '../../../src/assets/tag.svg';
 import '../../../public/styles/_body/_leftSection/leftSection.css';
 import {lifeUpdates , techSkills} from '../../../Data';
 
+import { io } from "socket.io-client";
+
+
 
 
 const title_compressor = (title) => {
@@ -45,6 +48,12 @@ const LeftSection = () => {
   const [currentTime, setCurrentTime] = useState('');
   const [spotifyData, setSpotifyData] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
+  const [updates, setUpdates] = useState(lifeUpdates);
+  const [leetcodeStatus, setLeetcodeStatus] = useState(null);
+  const [lastOnlineText, setLastOnlineText] = useState('');
+  const [socketConnected, setSocketConnected] = useState(false);
+
+
   const formatTime = (date) => {
     const hours = date.getHours().toString().padStart(2, '0');
     const minutes = date.getMinutes().toString().padStart(2, '0');
@@ -52,12 +61,21 @@ const LeftSection = () => {
     return `${hours} : ${minutes} : ${seconds}`;
    
   };
+
+  const getTimeAgoText = (timestamp) => {
+    const diff = Date.now() - timestamp;
+    const seconds = Math.floor(diff / 1000);
+    if (seconds < 60) return `${seconds} seconds ago`;
+    if (seconds < 3600) return `${Math.floor(seconds / 60)} minutes ago`;
+    if (seconds < 86400) return `${Math.floor(seconds / 3600)} hours ago`;
+    return `${Math.floor(seconds / 86400)} days ago`;
+  };
   
-   useEffect(() => {
+  useEffect(() => {
     const fetchSpotifyData = async () => {
       try {
         setIsLoading(true);
-        const response = await fetch('http://localhost:5000/api/now-playing');
+        const response = await fetch('https://spotify-server-nwd0.onrender.com/api/now-playing');
         
         if (!response.ok) {
           throw new Error('Failed to fetch Spotify data');
@@ -109,6 +127,77 @@ const LeftSection = () => {
     return () => clearInterval(intervalId);
   }, []);
 
+  useEffect(() => {
+    // Try to get life updates from localStorage
+    const savedUpdates = localStorage.getItem('lifeUpdates');
+    if (savedUpdates) {
+      try {
+        const parsedUpdates = JSON.parse(savedUpdates);
+        setUpdates(parsedUpdates);
+      } catch (e) {
+        console.error('Error loading life updates:', e);
+      }
+    }
+  }, []);
+
+  useEffect(() => {
+    const fetchLeetCodeStatus = async () => {
+      try {
+        const response = await fetch('https://leetcode-status-tracker-extension.onrender.com/status');
+        const data = await response.json();
+        setLeetcodeStatus(data);
+        if (data.status === 'offline') {
+          setLastOnlineText(getTimeAgoText(data.last_online));
+        } else {
+          setLastOnlineText('');
+        }
+      } catch (error) {
+        console.error('Error fetching LeetCode status:', error);
+      }
+    };
+
+    // Initial fetch
+    fetchLeetCodeStatus();
+
+    // Fallback polling every 60s
+    const fallbackInterval = setInterval(fetchLeetCodeStatus, 60000);
+
+    // WebSocket setup
+    const socket = io("https://leetcode-status-tracker-extension.onrender.com", {
+      transports: ['websocket'],
+      reconnectionAttempts: Infinity,
+      timeout: 10000
+    });
+
+    socket.on("connect", () => {
+      console.log("Socket connected");
+      setSocketConnected(true);
+    });
+
+    socket.on("disconnect", () => {
+      console.log("Socket disconnected");
+      setSocketConnected(false);
+    });
+
+    socket.on("statusUpdate", (data) => {
+      setLeetcodeStatus(data);
+      if (data.status === 'offline') {
+        setLastOnlineText(getTimeAgoText(data.last_online));
+      } else {
+        setLastOnlineText('');
+      }
+    });
+
+    socket.on("connect_error", (err) => {
+      console.error("Socket connection error:", err);
+    });
+
+    return () => {
+      socket.disconnect();
+      clearInterval(fallbackInterval);
+    };
+  }, []);
+
   return (
     <>
     <div className="left-section">
@@ -127,12 +216,28 @@ const LeftSection = () => {
               <span>{isMobile ? "Leetcode Status" : "Current Leetcode Status"}</span>
               <FaWifi style={{ marginLeft: '5px' }} />
             </div>
-            <div className="status-details">
-              <span className="status-badge">
-                <span className="status-dot status-dot--blinking offline"></span>
-                Offline
-              </span>
-              <span className="last-online"><span style={{color:"#B3B5B9", fontWeight:600}}>Last Online</span> 2 hours ago</span>
+            {/* Leetcode Status Data from my-custom-leetcode-server linked with my chrome ext*/}
+             <div className="status-details">
+              {leetcodeStatus ? (
+                leetcodeStatus.status === 'online' ? (
+                  <span className="status-badge">
+                    <span className="status-dot status-dot--blinking online"></span>
+                    Online
+                  </span>
+                ) : (
+                  <>
+                    <span className="status-badge">
+                      <span className="status-dot status-dot--blinking offline"></span>
+                      Offline
+                    </span>
+                    <span className="last-online">
+                      <span style={{ color: "#B3B5B9", fontWeight: 600 }}>Last Online</span> {lastOnlineText}
+                    </span>
+                  </>
+                )
+              ) : (
+                <span className="text-red-400">Loading...</span>
+              )}
             </div>
           </div>
           <div className="time-location">
@@ -231,10 +336,10 @@ const LeftSection = () => {
       </div>
     </div>
     <div className="life-update">
-          <h4><GiProgression size={15} style={{marginRight: '4px'}} /> Life Update's</h4>
+          <h4><GiProgression size={15} style={{marginRight: '4px'}} />Recent Update's</h4>
           <ul className='life-update-list'>
             {
-              lifeUpdates.map((update) => (
+              updates.map((update) => (
                 <li key={update.id}>
                   <HiArrowSmRight style={{verticalAlign:'middle',marginRight:'3px'}}/>
                   <span dangerouslySetInnerHTML={{ __html: update.text }} />

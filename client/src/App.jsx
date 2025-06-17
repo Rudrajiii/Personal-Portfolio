@@ -5,6 +5,8 @@ import Body from '../components/Body/Body';
 import About from '../components/About/About';
 import Contact from '../components/Contact/Contacts';
 import Paintings from '../components/Paintings/Paintings';
+import FunProject from '../components/FunProjects/FunProjects';
+import AdminPanel from '../components/Admin/AdminPanel';
 import './App.css'
 
 function App() {
@@ -17,7 +19,8 @@ function App() {
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/paintings" element={<Paintings />} />
-          {/* Add more routes as needed */}
+          <Route path="/fun-projects" element={<FunProject />} />
+          <Route path="/admin" element={<AdminPanel />} />
         </Routes>
       </div>
     </Router>
