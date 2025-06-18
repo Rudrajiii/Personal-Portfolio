@@ -260,9 +260,14 @@ const LeftSection = () => {
         <p>
           Enjoying Coding in illusional world...
           love to learn and explore new things!! currently 
-          working on <strong>Leetcode Status Tracker Extension</strong>
+          working on <strong>
+            Leetcode Status Tracker
+            <RoughNotation type="underline" show={true} color="#1DB954" animationDelay={1000} animationDuration={2000}>
+            <span> Extension </span>
+            </RoughNotation>
+              </strong>
           project & learning{' '}
-          <RoughNotation type="underline" show={true} color="#34d399">
+          <RoughNotation type="underline" show={true} color="#1DB954" animationDelay={1000} animationDuration={2000}>
             <span><strong>Go</strong></span>
           </RoughNotation>.
         </p>

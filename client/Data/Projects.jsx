@@ -18,7 +18,7 @@ export const projectsData = [
     },
     {
       id: 2,
-      title: "Js-Internals",
+      title: "Js-Internals | 1K+ Downloads",
       description: "This is a NPM Package based on JS , Which is basically gives an deep understanding How Inbuilt Js Functions , Methods Works Under the Hood , it can be much helpful those who are intermediate or new in js or preparing for an Job Preparation.",
       tags: ["javaScript", "NPM", "Node.js"],
       date: "May 2025",

@@ -2,6 +2,9 @@ import React from 'react';
 import '../../public/styles/_paintings/Paintings.css';
 import __eyes__ from '../../src/assets/hidden-skill-painting/eyes.jpg'; 
 import __zhuofan__ from '../../src/assets/zhuofan.png'; 
+import __joker__ from '../../src/assets/hidden-skill-painting/joker.jpg';
+import { RoughNotation } from 'react-rough-notation';
+
 
 // Import your paintings or use placeholders for now
 const paintings = [
@@ -29,15 +32,32 @@ const Paintings = () => {
           
           <div className="painting-text">
             <p className="painting-paragraph">
-              Painting is one and only hobby i have & i like it very much when ever i get time i do painting !!
+              Painting is {' '}
+              <RoughNotation type="box" show={true} color="#CA9216" animationDelay={1000} animationDuration={2000}>
+                <span>one and only hobby i have</span>
+              </RoughNotation>
+              {' '} & i like it very much when ever i get time i make paintings !!
             </p>
             
             <p className="painting-paragraph">
-              it's kinda work like a nurishment of my soul so i really enjoy doing it...
+              it's kinda work like a {' '}
+              <RoughNotation type="underline" show={true} color="#CA9216" animationDelay={1000} animationDuration={2000}>
+                <span>nourishment of my mind</span>
+              </RoughNotation>{' '}
+              so i really enjoy doing it...
             </p>
             
             <p className="painting-paragraph">
-              You know what? i've decided when I will grow older I will follow this passion for the rest of my life along with enjoying some anime show's and manhua's lol...
+              You know what? i've decided when I will grow older I will follow this passion for the rest of my life along with {' '}
+              <RoughNotation type="underline" show={true} color="#CA9216" animationDelay={1000} animationDuration={2000}>
+                <span>enjoying some anime show's</span>
+              </RoughNotation>
+              {' '}
+              and {' '}
+              <RoughNotation type="underline" show={true} color="#CA9216" animationDelay={1000} animationDuration={2000}>
+                <span>manhua's lol...</span>
+              </RoughNotation>
+              {' '}
             </p>
           </div>
         </div>
@@ -83,11 +103,11 @@ const Paintings = () => {
             <div className="grid-column">
               <div className="painting-item painting-tall">
                 <img 
-                  src="https://i.pinimg.com/736x/8f/ff/49/8fff491de9e00ad040b09834c678a0e1.jpg" 
+                  src={__joker__} 
                   alt="Painting 4"
                 />
                 <div className="painting-overlay">
-                  <p className="painting-title">Forest Path</p>
+                  <p className="painting-title">Joker (10/01/21)</p>
                 </div>
               </div>
               
