@@ -159,7 +159,7 @@ const LeftSection = () => {
   useEffect(() => {
     const fetchLeetCodeStatus = async () => {
       try {
-        const response = await fetch('https://leetcode-status-tracker-extension.onrender.com/status');
+        const response = await fetch('https://eerie-valeria-cosmicx-0c3a89bc.koyeb.app/status');
         const data = await response.json();
         setLeetcodeStatus(data);
         if (data.status === 'offline') {
@@ -179,7 +179,7 @@ const LeftSection = () => {
     const fallbackInterval = setInterval(fetchLeetCodeStatus, 60000);
 
     // WebSocket setup
-    const socket = io("https://leetcode-status-tracker-extension.onrender.com", {
+    const socket = io("https://eerie-valeria-cosmicx-0c3a89bc.koyeb.app", {
       transports: ['websocket'],
       reconnectionAttempts: Infinity,
       timeout: 10000
