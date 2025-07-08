@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { io } from "socket.io-client";
 
 import { FaClock , FaGithub,FaWifi,FaSpotify,FaDiscord } from "react-icons/fa";
 import { IoLogoLinkedin } from "react-icons/io5";
@@ -12,7 +13,6 @@ import __tag__ from '../../../src/assets/tag.svg';
 import '../../../public/styles/_body/_leftSection/leftSection.css';
 import {lifeUpdates , techSkills} from '../../../Data';
 
-import { io } from "socket.io-client";
 import { RoughNotation } from 'react-rough-notation';
 
 
@@ -54,7 +54,8 @@ const LeftSection = () => {
   const [leetcodeStatus, setLeetcodeStatus] = useState(null);
   const [lastOnlineText, setLastOnlineText] = useState('');
   const [socketConnected, setSocketConnected] = useState(false);
-
+  const [spotifySocket, setSpotifySocket] = useState(null);
+  const [spotifyConnected, setSpotifyConnected] = useState(false);
 
   const formatTime = (date) => {
     const hours = date.getHours().toString().padStart(2, '0');
@@ -72,76 +73,74 @@ const LeftSection = () => {
     if (seconds < 86400) return `${Math.floor(seconds / 3600)} hours ago`;
     return `${Math.floor(seconds / 86400)} days ago`;
   };
-
+  
   useEffect(() => {
-    const connectToSSE = () => {
-      setIsLoading(true);
-      
-      const eventSource = new EventSource('https://spotify-server-nwd0.onrender.com/api/now-playing-stream');
-      
-      eventSource.onmessage = (event) => {
-        try {
-          const data = JSON.parse(event.data);
-          setSpotifyData(data);
-          setIsLoading(false);
-        } catch (error) {
-          console.error('Error parsing SSE data:', error);
-          setIsLoading(false);
-        }
-      };
-      
-      eventSource.onopen = () => {
-        console.log('Spotify SSE connection opened');
+    const connectSpotifyWebSocket = () => {
+      const socket = io("https://spotify-server-nwd0.onrender.com/spotify", {
+        transports: ['websocket'],
+        reconnectionAttempts: 5,
+        timeout: 10000
+      });
+
+      socket.on("connect", () => {
+        console.log("Spotify WebSocket connected");
+        setSpotifyConnected(true);
         setIsLoading(false);
-      };
-      
-      eventSource.onerror = (error) => {
-        console.error('SSE connection error:', error);
+      });
+
+      socket.on("disconnect", () => {
+        console.log("Spotify WebSocket disconnected");
+        setSpotifyConnected(false);
+      });
+
+      socket.on("spotifyUpdate", (data) => {
+        console.log("Received Spotify update:", data);
+        setSpotifyData(data);
         setIsLoading(false);
-        eventSource.close();
+      });
+
+      socket.on("connect_error", (err) => {
+        console.error("Spotify WebSocket connection error:", err);
+        setIsLoading(false);
         
-        // Reconnect after 5 seconds
-        setTimeout(connectToSSE, 5000);
-      };
-      
-      return eventSource;
+        // Fallback to REST API if WebSocket fails
+        fallbackToRestAPI();
+      });
+
+      setSpotifySocket(socket);
+      return socket;
     };
-    
-    const eventSource = connectToSSE();
+
+    // Fallback function for REST API
+    const fallbackToRestAPI = async () => {
+      try {
+        const response = await fetch('https://spotify-server-nwd0.onrender.com/api/now-playing');
+        if (response.ok) {
+          const data = await response.json();
+          setSpotifyData(data);
+        }
+      } catch (error) {
+        console.error('Fallback API error:', error);
+      }
+    };
+
+    const socket = connectSpotifyWebSocket();
     
     return () => {
-      eventSource.close();
+      if (socket) {
+        socket.disconnect();
+      }
     };
   }, []);
-  
-  // useEffect(() => {
-  //   const fetchSpotifyData = async () => {
-  //     try {
-  //       setIsLoading(true);
-  //       const response = await fetch('https://spotify-server-nwd0.onrender.com/api/now-playing');
-        
-  //       if (!response.ok) {
-  //         throw new Error('Failed to fetch Spotify data');
-  //       }
-        
-  //       const data = await response.json();
-  //       setSpotifyData(data);
-  //     } catch (error) {
-  //       console.error('Error fetching Spotify data:', error);
-  //       setSpotifyData(null);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
 
-  //   // Initial fetch
-  //   fetchSpotifyData();
-    
-  //   // Set up polling every 30 seconds to keep data updated
-  //   const intervalId = setInterval(fetchSpotifyData, 30000);
-    
-  //   return () => clearInterval(intervalId);
-  // }, []);
+  // Function to manually request update
+  const requestSpotifyUpdate = () => {
+    if (spotifySocket && spotifyConnected) {
+      spotifySocket.emit('requestUpdate');
+    }
+  };
+
+  
   
   useEffect(() => {
     const handleResize = () => {
@@ -329,7 +328,7 @@ const LeftSection = () => {
           ))}
         </div>
       {/* Spotify Song Status */}
-       <div onClick={() => {redirectToSpotify(spotifyData.songUrl,spotifyData.isPlaying)}} className="spotify-div">
+       <div onClick={() => {redirectToSpotify(spotifyData?.songUrl, spotifyData?.isPlaying)}} className="spotify-div">
         <div className="spotify-card">
           <div className="spotify-album-art">
             {spotifyData && spotifyData.isPlaying ? (
@@ -358,6 +357,12 @@ const LeftSection = () => {
             <div className="spotify-currently-playing">
               {spotifyData && spotifyData.isPlaying && (
                 <span>Currently Playing</span>
+              )}
+              {/* Show connection status */}
+              {!spotifyConnected && (
+                <span style={{ color: '#ff6b6b', fontSize: '0.8em' }}>
+                  Connecting...
+                </span>
               )}
             </div>
           </div>
