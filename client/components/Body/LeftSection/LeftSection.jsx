@@ -72,35 +72,76 @@ const LeftSection = () => {
     if (seconds < 86400) return `${Math.floor(seconds / 3600)} hours ago`;
     return `${Math.floor(seconds / 86400)} days ago`;
   };
-  
-  useEffect(() => {
-    const fetchSpotifyData = async () => {
-      try {
-        setIsLoading(true);
-        const response = await fetch('https://spotify-server-nwd0.onrender.com/api/now-playing');
-        
-        if (!response.ok) {
-          throw new Error('Failed to fetch Spotify data');
-        }
-        
-        const data = await response.json();
-        setSpotifyData(data);
-      } catch (error) {
-        console.error('Error fetching Spotify data:', error);
-        setSpotifyData(null);
-      } finally {
-        setIsLoading(false);
-      }
-    };
 
-    // Initial fetch
-    fetchSpotifyData();
+  useEffect(() => {
+    const connectToSSE = () => {
+      setIsLoading(true);
+      
+      const eventSource = new EventSource('https://spotify-server-nwd0.onrender.com/api/now-playing-stream');
+      
+      eventSource.onmessage = (event) => {
+        try {
+          const data = JSON.parse(event.data);
+          setSpotifyData(data);
+          setIsLoading(false);
+        } catch (error) {
+          console.error('Error parsing SSE data:', error);
+          setIsLoading(false);
+        }
+      };
+      
+      eventSource.onopen = () => {
+        console.log('Spotify SSE connection opened');
+        setIsLoading(false);
+      };
+      
+      eventSource.onerror = (error) => {
+        console.error('SSE connection error:', error);
+        setIsLoading(false);
+        eventSource.close();
+        
+        // Reconnect after 5 seconds
+        setTimeout(connectToSSE, 5000);
+      };
+      
+      return eventSource;
+    };
     
-    // Set up polling every 30 seconds to keep data updated
-    const intervalId = setInterval(fetchSpotifyData, 30000);
+    const eventSource = connectToSSE();
     
-    return () => clearInterval(intervalId);
+    return () => {
+      eventSource.close();
+    };
   }, []);
+  
+  // useEffect(() => {
+  //   const fetchSpotifyData = async () => {
+  //     try {
+  //       setIsLoading(true);
+  //       const response = await fetch('https://spotify-server-nwd0.onrender.com/api/now-playing');
+        
+  //       if (!response.ok) {
+  //         throw new Error('Failed to fetch Spotify data');
+  //       }
+        
+  //       const data = await response.json();
+  //       setSpotifyData(data);
+  //     } catch (error) {
+  //       console.error('Error fetching Spotify data:', error);
+  //       setSpotifyData(null);
+  //     } finally {
+  //       setIsLoading(false);
+  //     }
+  //   };
+
+  //   // Initial fetch
+  //   fetchSpotifyData();
+    
+  //   // Set up polling every 30 seconds to keep data updated
+  //   const intervalId = setInterval(fetchSpotifyData, 30000);
+    
+  //   return () => clearInterval(intervalId);
+  // }, []);
   
   useEffect(() => {
     const handleResize = () => {
