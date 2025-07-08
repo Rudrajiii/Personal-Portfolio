@@ -114,34 +114,7 @@ const LeftSection = () => {
     };
   }, []);
   
-  // useEffect(() => {
-  //   const fetchSpotifyData = async () => {
-  //     try {
-  //       setIsLoading(true);
-  //       const response = await fetch('https://spotify-server-nwd0.onrender.com/api/now-playing');
-        
-  //       if (!response.ok) {
-  //         throw new Error('Failed to fetch Spotify data');
-  //       }
-        
-  //       const data = await response.json();
-  //       setSpotifyData(data);
-  //     } catch (error) {
-  //       console.error('Error fetching Spotify data:', error);
-  //       setSpotifyData(null);
-  //     } finally {
-  //       setIsLoading(false);
-  //     }
-  //   };
-
-  //   // Initial fetch
-  //   fetchSpotifyData();
-    
-  //   // Set up polling every 30 seconds to keep data updated
-  //   const intervalId = setInterval(fetchSpotifyData, 30000);
-    
-  //   return () => clearInterval(intervalId);
-  // }, []);
+  
   
   useEffect(() => {
     const handleResize = () => {
@@ -329,6 +302,7 @@ const LeftSection = () => {
           ))}
         </div>
       {/* Spotify Song Status */}
+      
        <div onClick={() => {redirectToSpotify(spotifyData.songUrl,spotifyData.isPlaying)}} className="spotify-div">
         <div className="spotify-card">
           <div className="spotify-album-art">
@@ -355,10 +329,13 @@ const LeftSection = () => {
                   : 'Open Spotify to play something'}
               </p>
             </div>
+            
             <div className="spotify-currently-playing">
-              {spotifyData && spotifyData.isPlaying && (
+              {isLoading ? (
+                <span className="loading-text">Loading...</span>
+              ) : (spotifyData && spotifyData.isPlaying && (
                 <span>Currently Playing</span>
-              )}
+              ))}
             </div>
           </div>
           
