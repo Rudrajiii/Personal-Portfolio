@@ -77,7 +77,7 @@ const LeftSection = () => {
     const connectToSSE = () => {
       setIsLoading(true);
       
-      const eventSource = new EventSource('https://spotify-server-nwd0.onrender.com/api/now-playing-stream');
+      const eventSource = new EventSource('https://spotify-server-tu0o.onrender.com/api/now-playing-stream');
       
       eventSource.onmessage = (event) => {
         try {
